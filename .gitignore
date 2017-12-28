@@ -1,0 +1,7 @@
+.vs/
+/SIENN.DbAccess/bin/Debug/netstandard2.0
+/SIENN.DbAccess/obj
+/SIENN.Dom/obj
+/SIENN.Domain/obj
+/SIENN.Services/obj
+/SIENN.WebApi/obj
