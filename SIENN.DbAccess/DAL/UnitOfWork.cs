@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using SIENN.DbAccess.Abstraction;
-using SIENN.Domain.Entities;
+using SIENN.DbAccess.Repositories;
+using SIENN.DbAccess.Repositories.Abstraction;
 
 namespace SIENN.DbAccess.DAL
 {
@@ -14,22 +15,22 @@ namespace SIENN.DbAccess.DAL
             _context = context;
         }
 
-        private GenericRepository<Product> _products;
-        public GenericRepository<Product> Products => 
-            _products ?? (_products = new GenericRepository<Product>(_context));
+        private IProductRepository _products;
+        public IProductRepository Products =>
+            _products ?? (_products = new ProductRepository(_context));
 
-        private GenericRepository<Category> _categories;
-        public GenericRepository<Category> Categories => 
-            _categories ?? (_categories = new GenericRepository<Category>(_context));
+        private ICategoryRepository _categories;
+        public ICategoryRepository Categories =>
+            _categories ?? (_categories = new CategoryRepository(_context));
 
-        private GenericRepository<ProductType> _productTypes;
+        private IProductTypeRepository _productTypes;
 
-        public GenericRepository<ProductType> ProductTypes =>
-            _productTypes ?? (_productTypes = new GenericRepository<ProductType>(_context));
+        public IProductTypeRepository ProductTypes =>
+            _productTypes ?? (_productTypes = new ProductTypeRepository(_context));
 
-        private GenericRepository<Unit> _units;
-        public GenericRepository<Unit> Units => 
-            _units ?? (_units = new GenericRepository<Unit>(_context));
+        private IUnitRepository _units;
+        public IUnitRepository Units =>
+            _units ?? (_units = new UnitRepository(_context));
 
         public void Save()
         {

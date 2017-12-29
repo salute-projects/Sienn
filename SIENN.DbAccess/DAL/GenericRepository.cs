@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +9,9 @@ namespace SIENN.DbAccess.DAL
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         private readonly DbSet<TEntity> _entities;
-        private DbContext _context;
 
         public GenericRepository(DbContext context)
         {
-            _context = context;
             _entities = context.Set<TEntity>();
         }
 
@@ -23,22 +20,22 @@ namespace SIENN.DbAccess.DAL
             return _entities.Find(id);
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public virtual IQueryable<TEntity> GetAll()
         {
-            return _entities.ToList();
+            return _entities;
         }
 
-        public virtual IEnumerable<TEntity> GetRange(int start, int count)
+        public virtual IQueryable<TEntity> GetRange(int start, int count)
         {
-            return _entities.Skip(start).Take(count).ToList();
+            return _entities.Skip(start).Take(count);
         }
 
-        public virtual IEnumerable<TEntity> GetRange(int start, int count, Expression<Func<TEntity, bool>> predicate)
+        public virtual IQueryable<TEntity> GetRange(int start, int count, Expression<Func<TEntity, bool>> predicate)
         {
-            return _entities.Where(predicate).Skip(start).Take(count).ToList();
+            return _entities.Where(predicate).Skip(start).Take(count);
         }
 
-        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return _entities.Where(predicate);
         }
@@ -53,9 +50,23 @@ namespace SIENN.DbAccess.DAL
             _entities.Add(entity);
         }
 
-        public virtual void Remove(TEntity entity)
+        public virtual void Remove(int id)
         {
-            _entities.Remove(entity);
+            var entity = Get(id);
+            if (entity != null)
+            {
+                _entities.Remove(entity);
+            }
+        }
+
+        public virtual void Remove(TEntity item)
+        {
+            _entities.Remove(item);
+        }
+
+        public void Update(TEntity entity)
+        {
+            _entities.Update(entity);
         }
     }
 }

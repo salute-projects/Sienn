@@ -5,3 +5,6 @@
 /SIENN.Domain/obj
 /SIENN.Services/obj
 /SIENN.WebApi/obj
+/SIENN.Domain/bin/Debug/netstandard2.0
+/SIENN.Services/bin/Debug/netstandard2.0
+/SIENN.WebApi/bin/Debug/netcoreapp2.0

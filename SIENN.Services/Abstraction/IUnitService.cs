@@ -1,7 +1,10 @@
-﻿namespace SIENN.Services.Abstraction
+﻿using SIENN.Domain.DTO.Unit;
+using SIENN.Domain.Entities;
+
+namespace SIENN.Services.Abstraction
 {
-    public interface IUnitService
+    public interface IUnitService : IDataService<Unit>
     {
-        
+        void Update(UpdateUnitDto dto);
     }
 }

@@ -1,7 +1,10 @@
-﻿namespace SIENN.Services.Abstraction
+﻿using SIENN.Domain.DTO.Category;
+using SIENN.Domain.Entities;
+
+namespace SIENN.Services.Abstraction
 {
-    public interface ICategoryService
+    public interface ICategoryService : IDataService<Category>
     {
-        
+        void Update(UpdateCategoryDto dto);
     }
 }

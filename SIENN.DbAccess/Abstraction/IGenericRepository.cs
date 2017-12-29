@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace SIENN.DbAccess.Abstraction
@@ -8,14 +8,16 @@ namespace SIENN.DbAccess.Abstraction
     {
         TEntity Get(int id);
 
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
-        IEnumerable<TEntity> GetAll();
-        IEnumerable<TEntity> GetRange(int start, int count);
-        IEnumerable<TEntity> GetRange(int start, int count, Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> GetAll();
+        IQueryable<TEntity> GetRange(int start, int count);
+        IQueryable<TEntity> GetRange(int start, int count, Expression<Func<TEntity, bool>> predicate);
 
         int Count();
 
         void Add(TEntity entity);
-        void Remove(TEntity entity);
+        void Remove(int id);
+        void Remove(TEntity item);
+        void Update(TEntity entity);
     }
 }

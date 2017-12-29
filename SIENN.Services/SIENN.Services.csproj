@@ -8,4 +8,10 @@
     <ProjectReference Include="..\SIENN.DbAccess\SIENN.DbAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.DataProtection">
+      <HintPath>..\..\..\Users\exoft-user\.nuget\packages\microsoft.aspnetcore.dataprotection\2.0.1\lib\netstandard2.0\Microsoft.AspNetCore.DataProtection.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
